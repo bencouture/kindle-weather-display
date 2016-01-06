@@ -19,10 +19,16 @@ except ImportError:
 # Geographic location
 #
 
+#os.environ["LATITUDE"] = "43.1339"
+#os.environ["LONGITUDE"] = "-70.9264"
+
 latitude = os.getenv("LATITUDE") #43.1339
 longitude = os.getenv("LONGITUDE") #-70.9264
-
-
+print (latitude)
+print (longitude)
+f = open('/www/root/coordinates.xml','w')
+f.write(latitude + ',' + longitude)
+f.close()
 
 #
 # Download and parse weather data
@@ -30,6 +36,13 @@ longitude = os.getenv("LONGITUDE") #-70.9264
 
 # Fetch data (change lat and lon to desired location)
 weather_xml = urlopen('http://graphical.weather.gov/xml/SOAP_server/ndfdSOAPclientByDay.php?whichClient=NDFDgenByDay&lat=' + str(latitude) + '&lon=' + str(longitude) + '&format=24+hourly&numDays=4&Unit=e').read()
+print (weather_xml)
+
+f = open('/www/root/weather.xml','w')
+f.write(wether_xml)
+f.close()
+#raise SystemExit(0)
+
 dom = minidom.parseString(weather_xml)
 
 # Parse temperatures
