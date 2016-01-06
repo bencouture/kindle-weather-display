@@ -7,6 +7,7 @@
 from xml.dom import minidom
 import datetime
 import codecs
+import os
 try:
     # Python 3
     from urllib.request import urlopen
@@ -18,8 +19,8 @@ except ImportError:
 # Geographic location
 #
 
-latitude = 43.1339
-longitude = -70.9264
+latitude = os.getenv("LATITUDE") #43.1339
+longitude = os.getenv("LONGITUDE") #-70.9264
 
 
 
